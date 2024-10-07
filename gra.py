@@ -18,10 +18,20 @@ def gra(screen, clock, key):
 			scale_factor = screen_width / screen_height  # Scale relative to width
 		else:
 			scale_factor = screen_height / screen_width  # Scale relative to height
-		return scale_factor
+		return scale_factor * 2  # Increase all elements' size by 2 times
+
 	
 	# Get the scaling factor for the screen
 	scale_factor = adjust_for_orientation(screen_width, screen_height)
+
+	# Adjusted scaling for question and answer display (multiplied by 2)
+	question_scale_width = int(screen_width * 0.35 * scale_factor)
+	question_scale_height = int(screen_height * 0.05 * scale_factor)
+
+	# Ensure nothing goes beyond the screen in portrait mode
+	if screen_height > screen_width:
+		question_scale_height = min(question_scale_height, screen_height * 0.1)  # Limit height in portrait mode
+		question_scale_width = min(question_scale_width, screen_width * 0.9)     # Limit width in portrait mode
 
 	def wyswietl(pytanie, odpowiedz):
 		
