@@ -6,7 +6,7 @@ from math import log2
 import pygame
 from vizualize import Object, create_box
 
-def gra(screen, clock, key):
+def gra(screen, clock, keys):
 	
 	# Get screen dimensions
 	screen_width, screen_height = screen.get_size()

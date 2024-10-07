@@ -21,7 +21,8 @@ def menu(screen, clock):
 		
 		return chosen_keys
 
-
+	display_info = pygame.display.Info()
+	screen_width, screen_height = display_info.current_w, display_info.current_h
 	def adjust_for_orientation(screen_width, screen_height):
 		# If the screen is taller than it is wide (portrait mode)
 		if screen_height > screen_width:

@@ -40,7 +40,6 @@ prawa:
   - '8'
   - '9'
   - '10'
-  punkty: 6
 sznury_choragwia:
   chances:
   - 100
@@ -75,4 +74,19 @@ sznury_choragwia:
   - "komendant chor\u0105gwi"
   - "zast\u0119pca komendanta chor\u0105gwi"
   - "cz\u0142onkowie komendy chor\u0105gwi"
-  punkty: 4
+
+points:
+  prawa:
+    points: 0
+    max_points: 0
+    sznury_choragwia: 0
+    prawa_sznury_choragwia:
+      points: 0
+      max_points: 0
+  sznury_choragwia:
+    points: 0
+    max_points: 0
+    prawa:
+      points: 0
+      max_points: 0
+
