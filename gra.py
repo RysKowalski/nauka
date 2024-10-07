@@ -58,7 +58,7 @@ def gra(screen, clock, key):
 		
 		chances_vizualize = Object(
 			texture=',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
-			x=int(screen_width * 0.1 + question_scale_width / 3),
+			x=int(screen_width * 0.5),
 			y=int(screen_height * 0.6),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
@@ -69,8 +69,8 @@ def gra(screen, clock, key):
 
 		punkty_vizualize = Object(
 			texture=f'punkty: {punkty}',
-			x=int(screen_width * 0.85),
-			y=int(screen_height * 0.2),
+			x=int(screen_width * 0.15),
+			y=int(screen_height * 0.16),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
@@ -80,8 +80,8 @@ def gra(screen, clock, key):
 
 		max_punkty_vizualize = Object(
 			texture=f'najwięcej punktów: {max_punkty}',
-			x=int(screen_width * 0.85),
-			y=int(screen_height * 0.3),
+			x=int(screen_width * 0.15),
+			y=int(screen_height * 0.35),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
