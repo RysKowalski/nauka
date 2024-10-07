@@ -214,7 +214,7 @@ def gra(screen, clock, key):
 				text_color=licznik_text_color  # Zmieniony kolor, jeśli ponad 10 sekund
 			)
 
-			screen.fill((255, 245, 255))
+			screen.fill((225, 225, 255))
 
 			# Rysowanie elementów na ekranie
 			pytanie_vizualize.draw(screen)

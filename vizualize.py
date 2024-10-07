@@ -1,4 +1,3 @@
-
 import pygame
 from typing import Union, Callable
 
@@ -117,7 +116,7 @@ class Object:
 			"data": self.data
 		}
 
-	def interact(self, coords, *args):
+	def interact(self, coords, *args, **kwargs):
 		click_x, click_y = coords
 
 		# Obliczenie obróconego obrazu
@@ -127,7 +126,7 @@ class Object:
 		# Sprawdzenie, czy kliknięto wewnątrz obróconego prostokąta
 		if rotated_rect.collidepoint((click_x, click_y)):
 			if args:
-				ret = self.code(self, *args)  # Przekazanie samego obiektu do funkcji
+				ret = self.code(self, *args, **kwargs)  # Przekazanie samego obiektu do funkcji
 
 				if ret is not None:
 					return ret
