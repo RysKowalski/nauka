@@ -80,7 +80,7 @@ def gra(screen, clock, key):
 
 		max_punkty_vizualize = Object(
 			texture=f'najwięcej punktów: {max_punkty}',
-			x=int(screen_width * 0.15),
+			x=int(screen_width * 0.05 + question_scale_width / 2),
 			y=int(screen_height * 0.35),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
