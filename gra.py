@@ -13,6 +13,8 @@ def gra(screen, clock, key):
 
 	def wyswietl(pytanie, odpowiedz):
 		
+		start = time.time()
+
 		def button(self):
 			print(self.data)
 			return self.data
@@ -32,6 +34,17 @@ def gra(screen, clock, key):
 			text_color=(0, 0, 0)
 		)
 		
+		chances_vizualize = Object(
+			texture = ',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
+			x=int(screen_width * 0.1),
+			y=int(screen_height * 0.5),
+			scale=[question_scale_width, question_scale_height],
+			angle=0,
+			font=pygame.font.SysFont('Arial', 40),
+			text = ',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
+			text_color=(0, 0, 0)
+		)
+
 		punkty_vizualize = Object(
 			texture=f'punkty: {punkty}',
 			x=int(screen_width * 0.85),
@@ -124,16 +137,31 @@ def gra(screen, clock, key):
 			)
 		]
 		
+		# Zmienna start z czasem rozpoczęcia pytania
+		start = time.time()
+		
+		# Tworzenie obiektu licznika (raz, przed pętlą)
+		licznik = Object(
+			texture=f'czas: {round(0, 1)}s',  # Początkowy czas to 0 sekund
+			x=int(screen_width * 0.5),
+			y=int(screen_height * 0.05),
+			scale=[question_scale_width, question_scale_height],
+			angle=0,
+			font=pygame.font.SysFont('Arial', 40),
+			text=f'czas: {round(0, 1)}s',  # Początkowy tekst licznika
+			text_color=(0, 0, 0)  # Początkowy kolor: czarny
+		)
+
 		done = False
 		odpowiedz = False
-		
-		start = time.time()
+
 		running = True
 		while running:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					running = False
-			
+					exit()
+
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					if event.button == 1:
 						pos = event.pos[0], event.pos[1]
@@ -146,28 +174,47 @@ def gra(screen, clock, key):
 								wynik = przycisk.interact(pos)
 								if isinstance(wynik, bool):
 									odpowiedz = wynik
-									endtime = start - time.time()
+									endtime = time.time() - start
 									running = False
-						
-			screen.fill((255, 245, 255))
 			
+			# Obliczanie upływu czasu
+			current_time = time.time() - start
+			licznik_text_color = (0, 0, 0)  # Domyślny kolor (czarny)
+
+			# Jeśli czas przekroczy 10 sekund, zmień kolor na czerwony
+			if current_time > 10:
+				licznik_text_color = (255, 0, 0)
+
+			# Aktualizuj licznik co klatkę za pomocą funkcji update
+			licznik.update(
+				texture=f'czas: {round(current_time, 1)}s',  # Aktualizowanie tekstu
+				text=f'czas: {round(current_time, 1)}s',
+				text_color=licznik_text_color  # Zmieniony kolor, jeśli ponad 10 sekund
+			)
+
+			screen.fill((255, 245, 255))
+
+			# Rysowanie elementów na ekranie
 			pytanie_vizualize.draw(screen)
 			punkty_vizualize.draw(screen)
 			max_punkty_vizualize.draw(screen)
+			chances_vizualize.draw(screen)
+			licznik.draw(screen)  # Rysowanie zaktualizowanego licznika
 
 			if done:
 				odpowiedz_vizualize.draw(screen)
 				for object in wyniki_buttons:
 					object.draw(screen)
-			
+
 			if not done:
 				for object in done_button:
 					object.draw(screen)
 				
 			clock.tick(60)
 			pygame.display.flip()
-		
-		return endtime, odpowiedz
+
+		return current_time, odpowiedz
+
 			
 	
 	while True:
@@ -191,7 +238,7 @@ def gra(screen, clock, key):
 			if not odpowiedz:
 				chances[liczba] *= 1.7
 				with open('prawa.yaml', 'w') as plik:
-					chances_list = list(chances)
+					chances = list(chances)
 					if punkty > max_punkty:
 						dane[key]['punkty'] = punkty
 					yaml.safe_dump(dane, plik)
