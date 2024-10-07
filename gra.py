@@ -58,7 +58,7 @@ def gra(screen, clock, key):
 		
 		chances_vizualize = Object(
 			texture=',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
-			x=int(screen_width * 0.1),
+			x=int(screen_width * 0.1 + question_scale_width / 3),
 			y=int(screen_height * 0.6),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
