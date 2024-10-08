@@ -1,12 +1,14 @@
-from random import randint
 import yaml
 import numpy as np
 import time
 from math import log2
 import pygame
 from vizualize import Object, create_box
+from dict_format import add_new_keys, divide_list
 
-def gra(screen, clock, keys):
+def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
+
+
 
 	# Get screen dimensions
 	screen_width, screen_height = screen.get_size()
@@ -37,7 +39,7 @@ def gra(screen, clock, keys):
 
 		start = time.time()
 
-		def button(self):
+		def button(self: Object):
 			print(self.data)
 			return self.data
 
@@ -56,22 +58,27 @@ def gra(screen, clock, keys):
 			text_color=(0, 0, 0)
 		)
 
+		chances_text = ',\\n'.join(
+			[f'{k}: {round(v, 2)}' for key in keys for k, v in zip(dane[key]['names'], chances)]
+		)
+
 		chances_vizualize = Object(
-			texture=',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
+			texture=chances_text,
 			x=int(screen_width * 0.5),
 			y=int(screen_height * 0.6),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
-			text=',\\n'.join([f'{k}: {round(v, 2)}' for k, v in zip(dane[key]['names'], chances)]),
+			text=chances_text,
 			text_color=(0, 0, 0)
 		)
 
+
 		punkty_vizualize = Object(
 			texture=f'punkty: {punkty}',
-			x=int(screen_width * 0.15),
+			x=int(screen_width * 0.25 - question_scale_width / 2),
 			y=int(screen_height * 0.16),
-			scale=[question_scale_width, question_scale_height],
+			scale=[question_scale_width / question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
 			text=str(punkty),
@@ -80,7 +87,7 @@ def gra(screen, clock, keys):
 
 		max_punkty_vizualize = Object(
 			texture=f'najwięcej punktów: {max_punkty}',
-			x=int(screen_width * 0.05 + question_scale_width / 2),
+			x=int(screen_width * 0.29 - question_scale_width / 2),
 			y=int(screen_height * 0.35),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
@@ -238,10 +245,11 @@ def gra(screen, clock, keys):
 		return current_time, odpowiedz
 
 
-
 	while True:
 		with open('prawa.yaml', 'r') as plik:
 			dane: dict = yaml.safe_load(plik)
+
+			dane = add_new_keys(keys, dane)
 
 			current_dict = dane['points']
 
@@ -299,7 +307,19 @@ def gra(screen, clock, keys):
 				
 				# Zapisujemy zmodyfikowane dane z powrotem do pliku YAML
 				with open('prawa.yaml', 'w') as plik:
-					yaml.safe_dump(dane, plik, allow_unicode=True)
+
+					lenghts: list[int] = []
+					for key in keys:
+						lenghts.append(len(dane[key]['chances']))
+					
+
+
+					new_chances: list[list] = divide_list(lenghts, chances)
+
+					for i, key in enumerate(keys):
+						dane[key]['chances'] = new_chances[i]
+
+					yaml.safe_dump(dane, plik, sort_keys=True)
 
 				break
 

@@ -1,45 +1,60 @@
 points:
   prawa:
-    max_points: 0
+    max_points: 2
     points: 0
     sznury_choragwia:
-      max_points: 4
+      max_points: 38
       points: 5
+      test:
+        max_points: 9
+        points: 0
+    test:
+      max_points: 6
+      points: 0
   sznury_choragwia:
     max_points: 5
     points: 0
     prawa:
       max_points: 0
       points: 0
+    test:
+      max_points: 3
+      points: 0
+  test:
+    max_points: 2
+    points: 0
 prawa:
   chances:
-  - 240.83333333333334
-  - 129.8668181813703
-  - 83.33333333333334
-  - 491.3
-  - 100
-  - 58262.22372297608
-  - 289.0
-  - 100
-  - 100
-  - 141.66666666666669
+  - 41.66666666666667
+  - 68.0
+  - 85.0
+  - 50.0
+  - 7.866410034887628e+19
+  - 417.605
+  - 50.0
+  - 50.0
+  - 50.0
+  - 120.41666666666669
   data:
-  - Mam szczer� wol�, ca�ym �yciem pe�ni� s�u�b�\nbogu i polsce,
-    \nnie�� ch�tn� pomoc bli�nim i by� pos�usznym\nprawu harcerskiemu.
-  - 1. Harcerz s�u�y Bogu i Polsce i sumiennie spe�nia swoje obowi�zki.
-  - 2. Na s�owie harcerza polegaj\n jak na Zawiszy.
-  - 3. Harcerz jest po�yteczny i niesie pomoc bli�nim.
-  - 4. Harcerz w ka�dym widzi bli�niego a za brata uwa�a ka�dego\n innego
-    harcerza
-  - 5. Harcerz post�puje po rycersku
-  - 6. Harcerz mi�uje przyrod� i stara si� j� pozna�
-  - 7. Harcerz jest karny i pos�uszny rodzicom\n i wszystkim swoim prze�o�onym.
-  - 8. Harcerz jest zawsze pogodny
-  - 9. Harcerz jest oszcz�dny i ofiarny
-  - 10. Harcerz jest czysty w my�li, mowie i uczynku, \nnie pali tytoniu i nie pije
-    napoj�w alkoholowych
+  - "Mam szczer\u0105 wol\u0119, ca\u0142ym \u017Cyciem pe\u0142ni\u0107 s\u0142u\u017C\
+    b\u0119 bogu i Polsce, nie\u015B\u0107 ch\u0119tn\u0105 pomoc bli\u017Anim i by\u0107\
+    \ pos\u0142usznym prawu harcerskiemu."
+  - "1. Harcerz s\u0142u\u017Cy Bogu i Polsce i sumiennie spe\u0142nia swoje obowi\u0105\
+    zki."
+  - "2. Na s\u0142owie harcerza polegaj jak na Zawiszy."
+  - "3. Harcerz jest po\u017Cyteczny i niesie pomoc bli\u017Anim."
+  - "4. Harcerz w ka\u017Cdym widzi bli\u017Aniego, a za brata uwa\u017Ca ka\u017C\
+    dego innego harcerza."
+  - "5. Harcerz post\u0119puje po rycersku."
+  - "6. Harcerz mi\u0142uje przyrod\u0119 i stara si\u0119 j\u0105 pozna\u0107."
+  - "7. Harcerz jest karny i pos\u0142uszny rodzicom i wszystkim swoim prze\u0142\
+    o\u017Conym."
+  - 8. Harcerz jest zawsze pogodny.
+  - "9. Harcerz jest oszcz\u0119dny i ofiarny."
+  - "10. Harcerz jest czysty w my\u015Bli, mowie i uczynku, nie pali tytoniu i nie\
+    \ pije napoj\xF3w alkoholowych."
   names:
-  - przyzeczenie
+  - przyrzeczenie
   - '1'
   - '2'
   - '3'
@@ -52,35 +67,35 @@ prawa:
   - '10'
 sznury_choragwia:
   chances:
-  - 100
-  - 100
-  - 57.87037037037038
-  - 289.0
-  - 141.66666666666669
-  - 118.05555555555557
-  - 100
-  - 100
-  - 100
-  - 240.83333333333334
+  - 50.0
+  - 50.0
+  - 50.0
+  - 50.0
+  - 245.65
+  - 41.66666666666667
+  - 50.0
+  - 50.0
+  - 50.0
+  - 85.0
   data:
-  - br�zowy spod ramienia
+  - "br\u0105zowy spod ramienia"
   - zielony spod ramienia
   - granatowy spod ramienia
   - srebrny z ramienia
   - srebrny spod ramienia
-  - srebrny spod ko�nie�a
+  - "srebrny spod ko\u0142nierza"
   - granatowy z ramienia
-  - z�oty z ramienia
-  - z�oty spod ramienia
-  - z�oty spod ko�nierza
+  - "z\u0142oty z ramienia"
+  - "z\u0142oty spod ramienia"
+  - "z\u0142oty spod ko\u0142nierza"
   names:
-  - zast�powy
+  - "zast\u0119powy"
   - przyboczny
-  - dru�ynowy
+  - "dru\u017Cynowy"
   - hufcowy
-  - zast�pca hufcowego
-  - cz�onkowie komendy hufca
+  - "zast\u0119pca hufcowego"
+  - "cz\u0142onkowie komendy hufca"
   - szczepowy
-  - komendant chor�gwi
-  - zast�pca komendanta chor�gwi
-  - cz�onkowie komendy chor�gwi
+  - "komendant chor\u0105gwi"
+  - "zast\u0119pca komendanta chor\u0105gwi"
+  - "cz\u0142onkowie komendy chor\u0105gwi"

@@ -27,6 +27,26 @@ def add_new_keys(keys: list[str], existing_dict: dict) -> dict:
 
     return existing_dict
 
+def divide_list(lengths: list[int], long_list: list):
+    # Oblicz długości sublist
+    
+    
+    # Sprawdź, czy suma długości sublist zgadza się z długością long_list
+    if sum(lengths) != len(long_list):
+        raise ValueError("Długości sublist nie zgadzają się z długością długiej listy.")
+    
+    # Tworzenie wynikowych sublist
+    result = []
+    start_index = 0
+    
+    for length in lengths:
+        end_index = start_index + length
+        result.append(long_list[start_index:end_index])
+        start_index = end_index
+    
+    return result
+
+
 
 if __name__ == '__main__':
     # Example usage
