@@ -3,7 +3,7 @@ import pygame
 from pathlib import Path
 from vizualize import Object, create_box
 
-def menu(screen, clock):
+def menu(screen: pygame.display, clock: pygame.time.Clock):
 
 	def wybierz_element(self: Object):
 		self.data['clicked'] = not self.data['clicked']
@@ -36,8 +36,8 @@ def menu(screen, clock):
 	scale_factor = adjust_for_orientation(screen_width, screen_height)
 
 
-	objects = []
-	texts = []
+	objects: list[Object] = []
+	texts: list[Object] = []
 
 	with open('prawa.yaml', 'r') as plik:
 		keys = list(yaml.safe_load(plik).keys())
