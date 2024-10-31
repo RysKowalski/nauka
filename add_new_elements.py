@@ -1,7 +1,7 @@
-import yaml
+from komunikacja_api import save, load
 
-with open('prawa.yaml', 'r') as plik:
-    dane: dict = yaml.safe_load(plik)
+
+dane: dict = load()
 
 nazwa: str = input('podaj nazwe zbioru: ')
 
@@ -22,5 +22,5 @@ chances: list[float] = [100 for _ in range(len(nazwy))]
 
 dane[nazwa] = {'chances':chances, 'data':elementy, 'names':nazwy}
 
-with open('prawa.yaml', 'w') as plik:
-    yaml.safe_dump(dane, plik)
+
+save(dane)

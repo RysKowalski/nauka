@@ -1,39 +1,27 @@
 points:
   prawa:
-    max_points: 9
+    max_points: 0
     points: 0
     sznury_choragwia:
-      max_points: 26
-      points: 5
-      test:
-        max_points: 9
-        points: 0
-    test:
-      max_points: 6
-      points: 0
-  sznury_choragwia:
-    max_points: 8
-    points: 0
-    prawa:
       max_points: 0
       points: 0
-    test:
-      max_points: 3
-      points: 0
-  test:
-    max_points: 2
-    points: 0
+      test:
+        max_points: 0
+        points: 0
+        testowy zbior:
+          max_points: 0
+          points: 0
 prawa:
   chances:
   - 100.0
+  - 170.0
+  - 100.0
+  - 289.0
+  - 170.0
   - 100.0
   - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
+  - 289.0
+  - 83.33333333333334
   - 100.0
   data:
   - "Mam szczer\u0105 wol\u0119, ca\u0142ym \u017Cyciem pe\u0142ni\u0107 s\u0142u\u017C\
@@ -67,15 +55,15 @@ prawa:
   - '10'
 sznury_choragwia:
   chances:
+  - 141.66666666666669
+  - 2413.7569
+  - 289.0
   - 100.0
+  - 491.3
+  - 170.0
   - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
-  - 100.0
+  - 170.0
+  - 170.0
   - 100.0
   data:
   - "br\u0105zowy spod ramienia"
@@ -99,11 +87,18 @@ sznury_choragwia:
   - "komendant chor\u0105gwi"
   - "zast\u0119pca komendanta chor\u0105gwi"
   - "cz\u0142onkowie komendy chor\u0105gwi"
+test:
+  chances:
+  - 170.0
+  data:
+  - chce
+  names:
+  - nie
 testowy zbior:
   chances:
-  - 100
-  - 100
-  - 100
+  - 141.66666666666669
+  - 170.0
+  - 100.0
   data:
   - sigma to perfekcyjna istota, inaczej sigma
   - "alfa to alfa, ty nie jeste\u015B alf\u0105"

@@ -1,10 +1,11 @@
-import yaml
 import numpy as np
 import time
 from math import log2
 import pygame
+
 from vizualize import Object, create_box
 from dict_format import add_new_keys, divide_list
+from komunikacja_api import save, load
 
 def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
@@ -262,29 +263,29 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 
 	while True:
-		with open('prawa.yaml', 'r') as plik:
-			dane: dict = yaml.safe_load(plik)
+		
+		dane: dict = load()
 
-			dane = add_new_keys(keys, dane)
+		dane = add_new_keys(keys, dane)
 
-			current_dict = dane['points']
+		current_dict = dane['points']
 
-			for key in keys:
-				current_dict = current_dict[key]  
+		for key in keys:
+			current_dict = current_dict[key]  
 
-			max_punkty: int = int(current_dict['max_points'])
-			punkty: int = int(current_dict['points'])
+		max_punkty: int = int(current_dict['max_points'])
+		punkty: int = int(current_dict['points'])
 
-			print(f"Max punkty: {max_punkty}, Punkty: {punkty}")
+		print(f"Max punkty: {max_punkty}, Punkty: {punkty}")
 
-			chances: list[float] = []
-			prawa: list[str] = []
-			names: list[str] = []
+		chances: list[float] = []
+		prawa: list[str] = []
+		names: list[str] = []
 
-			for key in keys:
-				chances += dane[key]['chances']
-				prawa += dane[key]['data']
-				names += dane[key]['names']
+		for key in keys:
+			chances += dane[key]['chances']
+			prawa += dane[key]['data']
+			names += dane[key]['names']
 
 
 		punkty = 0
@@ -322,20 +323,20 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 					raise TypeError(f"Expected dict at {ostatni_klucz}, but got {type(current_dict[ostatni_klucz])}")
 				
 				# Zapisujemy zmodyfikowane dane z powrotem do pliku YAML
-				with open('prawa.yaml', 'w') as plik:
+				
 
-					lenghts: list[int] = []
-					for key in keys:
-						lenghts.append(len(dane[key]['chances']))
+				lenghts: list[int] = []
+				for key in keys:
+					lenghts.append(len(dane[key]['chances']))
 					
 
 
-					new_chances: list[list] = divide_list(lenghts, chances)
+				new_chances: list[list] = divide_list(lenghts, chances)
 
-					for i, key in enumerate(keys):
-						dane[key]['chances'] = new_chances[i]
+				for i, key in enumerate(keys):
+					dane[key]['chances'] = new_chances[i]
 
-					yaml.safe_dump(dane, plik, sort_keys=True)
+				save(dane)
 
 				break
 

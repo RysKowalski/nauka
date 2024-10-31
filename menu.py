@@ -1,7 +1,8 @@
-import yaml
 import pygame
 from pathlib import Path
+
 from vizualize import Object, create_box
+from komunikacja_api import  load
 
 def menu(screen: pygame.display, clock: pygame.time.Clock):
 
@@ -39,9 +40,9 @@ def menu(screen: pygame.display, clock: pygame.time.Clock):
 	objects: list[Object] = []
 	texts: list[Object] = []
 
-	with open('prawa.yaml', 'r') as plik:
-		keys = list(yaml.safe_load(plik).keys())
-		keys.remove('points')
+	
+	keys = list(load().keys())
+	keys.remove('points')
 
 	key = ''
 
@@ -119,6 +120,7 @@ def menu(screen: pygame.display, clock: pygame.time.Clock):
 
 if __name__ == '__main__':
 	pygame.init()
+	
 
 	display_info = pygame.display.Info()
 	screen_width, screen_height = display_info.current_w, display_info.current_h
