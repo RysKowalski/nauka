@@ -40,6 +40,7 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 		start = time.time()
 
 		def button(self: Object):
+		def button(self: Object):
 			print(self.data)
 			return self.data
 
@@ -77,7 +78,9 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 		punkty_vizualize = Object(
 			texture=f'punkty: {punkty}',
 			x=int(screen_width * 0.25 - question_scale_width / 2),
+			x=int(screen_width * 0.25 - question_scale_width / 2),
 			y=int(screen_height * 0.16),
+			scale=[question_scale_width / question_scale_width, question_scale_height],
 			scale=[question_scale_width / question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
@@ -87,6 +90,7 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 		max_punkty_vizualize = Object(
 			texture=f'najwięcej punktów: {max_punkty}',
+			x=int(screen_width * 0.29 - question_scale_width / 2),
 			x=int(screen_width * 0.29 - question_scale_width / 2),
 			y=int(screen_height * 0.35),
 			scale=[question_scale_width, question_scale_height],
@@ -248,6 +252,8 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 	while True:
 		with open('prawa.yaml', 'r') as plik:
 			dane: dict = yaml.safe_load(plik)
+
+			dane = add_new_keys(keys, dane)
 
 			dane = add_new_keys(keys, dane)
 
