@@ -58,28 +58,42 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 			text_color=(0, 0, 0)
 		)
 
-		chances_text = ',\\n'.join(
-			[f'{k}: {round(v, 2)}' for key in keys for k, v in zip(dane[key]['names'], chances)]
-		)
+		def make_chances_epic() -> str:
 
+			# Tworzenie tekstu z danymi z każdego klucza
+			chances_list: list[str] = []
+
+			for i in range(len(chances)):
+				chances_list.append(f'{names[i]}: {round(chances[i], 2)}')
+
+			chances_text = ',\\n'.join(chances_list)
+			return chances_text
+		
+		chances_text: str = make_chances_epic()
+
+		# Obliczenie liczby linii w `chances_text`
+		line_count = chances_text.count('\\n') + 1
+
+		# Dostosowanie rozmiaru czcionki w zależności od liczby linii (np. im więcej linii, tym mniejsza czcionka)
+		base_font_size = 40
+		adjusted_font_size = max(int(base_font_size * (10 / line_count)), 10)  # Minimalna wielkość czcionki to 10
+
+		# Utworzenie obiektu wizualizacji z dynamicznie dopasowaną czcionką
 		chances_vizualize = Object(
 			texture=chances_text,
 			x=int(screen_width * 0.5),
 			y=int(screen_height * 0.6),
 			scale=[question_scale_width, question_scale_height],
 			angle=0,
-			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
+			font=pygame.font.SysFont('Arial', int(adjusted_font_size * scale_factor)),
 			text=chances_text,
 			text_color=(0, 0, 0)
 		)
 
-
 		punkty_vizualize = Object(
 			texture=f'punkty: {punkty}',
 			x=int(screen_width * 0.25 - question_scale_width / 2),
-			x=int(screen_width * 0.25 - question_scale_width / 2),
 			y=int(screen_height * 0.16),
-			scale=[question_scale_width / question_scale_width, question_scale_height],
 			scale=[question_scale_width / question_scale_width, question_scale_height],
 			angle=0,
 			font=pygame.font.SysFont('Arial', int(40 * scale_factor)),
@@ -89,7 +103,6 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 		max_punkty_vizualize = Object(
 			texture=f'najwięcej punktów: {max_punkty}',
-			x=int(screen_width * 0.29 - question_scale_width / 2),
 			x=int(screen_width * 0.29 - question_scale_width / 2),
 			y=int(screen_height * 0.35),
 			scale=[question_scale_width, question_scale_height],
@@ -251,8 +264,6 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 	while True:
 		with open('prawa.yaml', 'r') as plik:
 			dane: dict = yaml.safe_load(plik)
-
-			dane = add_new_keys(keys, dane)
 
 			dane = add_new_keys(keys, dane)
 
