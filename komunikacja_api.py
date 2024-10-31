@@ -1,7 +1,7 @@
 import requests
 import json
 
-debug = True
+debug = False
 
 if debug:
 	url = 'http://localhost:3000/api'
