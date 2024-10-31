@@ -40,7 +40,6 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 		start = time.time()
 
 		def button(self: Object):
-		def button(self: Object):
 			print(self.data)
 			return self.data
 
