@@ -99,3 +99,17 @@ sznury_choragwia:
   - "komendant chor\u0105gwi"
   - "zast\u0119pca komendanta chor\u0105gwi"
   - "cz\u0142onkowie komendy chor\u0105gwi"
+testowy zbior:
+  chances:
+  - 100
+  - 100
+  - 100
+  data:
+  - sigma to perfekcyjna istota, inaczej sigma
+  - "alfa to alfa, ty nie jeste\u015B alf\u0105"
+  - "skoro z tego ko\u017Cystasz, znaczy \u017Ce nim jeste\u015B. m\xF3wi\u0142em\
+    \ do ciebie, rysiek"
+  names:
+  - sigma
+  - alfa
+  - looser
