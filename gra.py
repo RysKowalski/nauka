@@ -86,7 +86,7 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 		# Dostosowanie rozmiaru czcionki w zależności od liczby linii (np. im więcej linii, tym mniejsza czcionka)
 		base_font_size = 40
-		adjusted_font_size = max(int(base_font_size * (20 / line_count)), 10)  # Minimalna wielkość czcionki to 10
+		adjusted_font_size = max(int(scale_factor * line_count * 1.4), 10)  # Minimalna wielkość czcionki to 10
 
 		# Utworzenie obiektu wizualizacji z dynamicznie dopasowaną czcionką
 		chances_vizualize = Object(

@@ -2,6 +2,7 @@ import pygame
 
 from menu import menu
 from gra import gra
+
 pygame.init()
 
 display_info = pygame.display.Info()
