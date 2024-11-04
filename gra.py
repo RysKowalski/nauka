@@ -2,14 +2,23 @@ import numpy as np
 import time
 from math import log2
 import pygame
+from concurrent.futures import ThreadPoolExecutor
 
 from vizualize import Object, create_box
 from dict_format import add_new_keys, divide_list
 from komunikacja_api import save, load
 
+executor = ThreadPoolExecutor(max_workers=1)
+
+def async_save(data):
+    """Zapisuje dane asynchronicznie bez blokowania głównego wątku gry."""
+    executor.submit(save, data)
+
+
+
 def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
-
+	load_timer: int = 0
 
 	# Get screen dimensions
 	screen_width, screen_height = screen.get_size()
@@ -77,7 +86,7 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 		# Dostosowanie rozmiaru czcionki w zależności od liczby linii (np. im więcej linii, tym mniejsza czcionka)
 		base_font_size = 40
-		adjusted_font_size = max(int(base_font_size * (12 / line_count)), 10)  # Minimalna wielkość czcionki to 10
+		adjusted_font_size = max(int(base_font_size * (20 / line_count)), 10)  # Minimalna wielkość czcionki to 10
 
 		# Utworzenie obiektu wizualizacji z dynamicznie dopasowaną czcionką
 		chances_vizualize = Object(
@@ -201,6 +210,9 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 		done = False
 		odpowiedz = False
 
+		
+
+		
 		running = True
 		while running:
 			for event in pygame.event.get():
@@ -264,28 +276,32 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 
 	while True:
 		
-		dane: dict = load()
+		
+		
+		if load_timer % 3 == 0:
+		
+			dane: dict = load()
 
-		dane = add_new_keys(keys, dane)
+			dane = add_new_keys(keys, dane)
 
-		current_dict = dane['points']
+			current_dict = dane['points']
 
-		for key in keys:
-			current_dict = current_dict[key]  
+			for key in keys:
+				current_dict = current_dict[key]  
 
-		max_punkty: int = int(current_dict['max_points'])
-		punkty: int = int(current_dict['points'])
+			max_punkty: int = int(current_dict['max_points'])
+			punkty: int = int(current_dict['points'])
 
-		print(f"Max punkty: {max_punkty}, Punkty: {punkty}")
+			print(f"Max punkty: {max_punkty}, Punkty: {punkty}")
 
-		chances: list[float] = []
-		prawa: list[str] = []
-		names: list[str] = []
+			chances: list[float] = []
+			prawa: list[str] = []
+			names: list[str] = []
 
-		for key in keys:
-			chances += dane[key]['chances']
-			prawa += dane[key]['data']
-			names += dane[key]['names']
+			for key in keys:
+				chances += dane[key]['chances']
+				prawa += dane[key]['data']
+				names += dane[key]['names']
 
 
 		punkty = 0
@@ -336,7 +352,7 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 				for i, key in enumerate(keys):
 					dane[key]['chances'] = new_chances[i]
 
-				save(dane)
+				async_save(dane)
 
 				break
 
@@ -347,6 +363,8 @@ def gra(screen: pygame.display, clock: pygame.time.Clock, keys: list[str]):
 					max_punkty = punkty
 				chances[liczba] /= 1.2
 			print(punkty)
+			
+			load_timer += 1
 
 
 if __name__ == '__main__':
